@@ -19,6 +19,15 @@ class AlquranView extends GetView<AlquranController> {
       appBar: AppBar(
         title: const Text('Alquran'),
         centerTitle: true,
+        actions: [
+          InkWell(
+            child: Container(
+              height: 60,
+              width: 60,
+              child: Icon(Icons.search),
+            ),
+          )
+        ],
       ),
       body: BaseLayout(
         size: size,
@@ -70,11 +79,6 @@ class AlquranView extends GetView<AlquranController> {
             itemCount: state!.length,
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              // return listQuran(
-              //     state[index]['name']['transliteration']['id'],
-              //     state[index]['name']['translation']['id'],
-              //     "${state[index]['numberOfVerses']}",
-              //     state[index]['revelation']['id']);
               return listQuran(state[index]);
             },
           ),

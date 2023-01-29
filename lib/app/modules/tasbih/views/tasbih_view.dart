@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 import '../controllers/tasbih_controller.dart';
 
@@ -20,36 +21,72 @@ class TasbihView extends GetView<TasbihController> {
         ),
         centerTitle: true,
       ),
-      floatingActionButton: InkWell(
-        onTap: () {
-          controller.increment();
-        },
-        child: Container(
-          height: 60,
-          width: 60,
-          child: Icon(
-            Iconsax.add4,
-            size: 30,
-            color: Colors.white,
-          ),
-          decoration: BoxDecoration(
-              color: Color.fromARGB(255, 25, 192, 136),
-              borderRadius: BorderRadius.circular(20)),
-        ),
-      ),
       body: BaseLayout(
-          size: size,
-          child: SizedBox(
-            height: size.height,
-            child: Center(
-              child: Obx(
-                () => Text(
-                  "${controller.count.value}",
-                  style: TextStyle(fontSize: 70, fontWeight: FontWeight.bold),
+        size: size,
+        child: Center(
+          child: GestureDetector(
+            onTap: () {
+              controller.increment();
+            },
+            child: Obx(
+              () => Container(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Terulang",style: TextStyle(fontWeight: FontWeight.bold),textAlign: TextAlign.center,),
+                    SizedBox(height: 20,),
+                    Text("${controller.tasbih_terulang}",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold),textAlign: TextAlign.center),
+                    SizedBox(height: 20,),
+                    SfRadialGauge(
+                      axes: <RadialAxis>[
+                        RadialAxis(
+                          annotations: <GaugeAnnotation>[
+                            GaugeAnnotation(
+                              widget: Container(
+                                child: Text(
+                                  "${controller.count.value}/33",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    letterSpacing: 1,
+                                    fontSize: 30,
+                                  ),
+                                ),
+                              ),
+                              positionFactor: 1,
+                              angle: 90,
+                            )
+                          ],
+                          maximum: 33,
+                          minimum: 1,
+                          showLabels: false,
+                          axisLineStyle: AxisLineStyle(thickness: 20),
+                          showTicks: false,
+                          interval: 1,
+                          pointers: <GaugePointer>[
+                            NeedlePointer(value: controller.count.value.toDouble()),
+                            RangePointer(
+                              value: controller.count.value.toDouble(), // chane
+                              width: 20,
+                              enableAnimation: true,
+                              color: Color.fromARGB(255, 25, 192, 136),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ],
                 ),
               ),
             ),
-          )),
+          ),
+        ),
+      ),
     );
   }
 }
+
+//  Text(
+//                   "${controller.count.value}",
+//                   style: TextStyle(fontSize: 70, fontWeight: FontWeight.bold),
+//                 )

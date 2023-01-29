@@ -8,6 +8,7 @@ abstract class Routes {
   static const TASBIH = _Paths.TASBIH;
   static const ALQURAN = _Paths.ALQURAN;
   static const DETAIL_QURAN = _Paths.DETAIL_QURAN;
+  static const TAHLIL = _Paths.TAHLIL;
 }
 
 abstract class _Paths {
@@ -17,4 +18,5 @@ abstract class _Paths {
   static const TASBIH = '/tasbih';
   static const ALQURAN = '/alquran';
   static const DETAIL_QURAN = '/detail-quran/:surahID';
+  static const TAHLIL = '/tahlil';
 }

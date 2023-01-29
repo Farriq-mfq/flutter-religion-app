@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 import 'app/routes/app_pages.dart';
 
 void main() {
+  Intl.withLocale('id', () => print("ok"));
   runApp(const MyApp());
 }
 
@@ -28,7 +30,7 @@ class MyApp extends StatelessWidget {
             color: Color.fromARGB(255, 25, 192, 136),
             elevation: 0,
             centerTitle: true,
-            toolbarHeight: 100,
+            // toolbarHeight: 100,
             actionsIconTheme: IconThemeData(color: Colors.white),
           ),
           scaffoldBackgroundColor: Colors.grey.shade100),

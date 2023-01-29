@@ -8,6 +8,8 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
+import '../modules/tahlil/bindings/tahlil_binding.dart';
+import '../modules/tahlil/views/tahlil_view.dart';
 import '../modules/tasbih/bindings/tasbih_binding.dart';
 import '../modules/tasbih/views/tasbih_view.dart';
 
@@ -43,6 +45,11 @@ class AppPages {
       name: _Paths.DETAIL_QURAN,
       page: () => const DetailQuranView(),
       binding: DetailQuranBinding(),
+    ),
+    GetPage(
+      name: _Paths.TAHLIL,
+      page: () => const TahlilView(),
+      binding: TahlilBinding(),
     ),
   ];
 }

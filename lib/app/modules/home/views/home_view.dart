@@ -1,8 +1,10 @@
 import 'package:alquranapp/app/widget/KategoriWidget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../controllers/home_controller.dart';
 import 'dart:ui' as ui;
@@ -13,7 +15,12 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+    // int endTime = DateTime.now().millisecondsSinceEpoch + ;
     return Scaffold(
+      floatingActionButton: ElevatedButton(
+        child: Text("test"),
+        onPressed: () => controller.findJadwalSholat(),
+      ),
       body: SafeArea(
           child: SingleChildScrollView(
         child: Column(
@@ -45,6 +52,7 @@ class HomeView extends GetView<HomeController> {
                                 children: [
                                   Text(
                                     "ISHA",
+                                    textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 28,
@@ -56,6 +64,7 @@ class HomeView extends GetView<HomeController> {
                                   ),
                                   Text(
                                     "Current Prayer",
+                                    textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 14,
@@ -95,6 +104,10 @@ class HomeView extends GetView<HomeController> {
                                           SizedBox(
                                             height: 8,
                                           ),
+                                          // CountdownTimer(
+                                          //   endTime: endTime,
+                                            
+                                          // ),
                                           Text(
                                             "07:50",
                                             style: TextStyle(
@@ -154,16 +167,18 @@ class HomeView extends GetView<HomeController> {
                           right: 0,
                         ),
                         Positioned(
-                          child: Row(
-                            children: [
-                              Text(
-                                "09 Muharam 1444",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              )
-                            ],
+                          child: controller.obx(
+                            (state) => Row(
+                              children: [
+                                Text(
+                                  "ds Muharam 1444",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                           left: 10,
                           right: 10,
@@ -219,7 +234,7 @@ class HomeView extends GetView<HomeController> {
                   KategoriWidget(
                     icon_path: "assets/icons/tahlil.svg",
                     title: "Tahlil",
-                    link: "/tasbih",
+                    link: "/tahlil",
                   ),
                   KategoriWidget(
                     icon_path: "assets/icons/tata_cara.svg",
