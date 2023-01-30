@@ -16,14 +16,4 @@ class HomeProvider extends GetConnect {
       Future.error(Exception("Terjadi kesalahan"));
     }
   }
-
-  Future<dynamic> getJadwalSholat(String date) async {
-    var response = await get(
-        "https://api.banghasan.com/sholat/format/json/jadwal/kota/723/tanggal/${date}");
-    if (response.isOk) {
-      return response.body;
-    } else {
-      Future.error(Exception("Terjadi kesalahan"));
-    }
-  }
 }

@@ -26,6 +26,7 @@ class AlquranView extends GetView<AlquranController> {
               width: 60,
               child: Icon(Icons.search),
             ),
+            onTap: () =>  Get.toNamed("/search"),
           )
         ],
       ),

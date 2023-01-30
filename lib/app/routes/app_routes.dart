@@ -12,6 +12,10 @@ abstract class Routes {
   static const ASMAUL_HUSNA = _Paths.ASMAUL_HUSNA;
   static const DOA = _Paths.DOA;
   static const BACAAN = _Paths.BACAAN;
+  static const DOA_SHOLAT = _Paths.DOA_SHOLAT;
+  static const NIAT_SHOLAT = _Paths.NIAT_SHOLAT;
+  static const JADWAL_SHOLAT = _Paths.JADWAL_SHOLAT;
+  static const SEARCH = _Paths.SEARCH;
 }
 
 abstract class _Paths {
@@ -25,4 +29,8 @@ abstract class _Paths {
   static const ASMAUL_HUSNA = '/asmaul-husna';
   static const DOA = '/doa';
   static const BACAAN = '/bacaan';
+  static const DOA_SHOLAT = '/doa-sholat';
+  static const NIAT_SHOLAT = '/niat-sholat';
+  static const JADWAL_SHOLAT = '/jadwal-sholat';
+  static const SEARCH = '/search';
 }

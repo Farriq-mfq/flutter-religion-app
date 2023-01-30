@@ -14,13 +14,16 @@ dependencies:
   flutter_svg: ^1.1.6
   skeletons: ^0.0.3
   sliding_up_panel: ^2.0.0+1
-  syncfusion_flutter_gauges: 
-  intl: 
+  syncfusion_flutter_gauges: ^20.4.44
+  intl:
+
   flutter:
     sdk: flutter
 
 dev_dependencies:
   flutter_lints: ^2.0.0
+  flutter_native_splash:
+  flutter_launcher_icons:
   flutter_test:
     sdk: flutter
 
@@ -30,3 +33,21 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/data/
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  web:
+    generate: false
+    image_path: "path/to/image.png"
+    background_color: "#hexcode"
+    theme_color: "#hexcode"
+  windows:
+    generate: false
+    image_path: "path/to/image.png"
+    icon_size: 48 # min:48, max:256, default: 48
+  macos:
+    generate: false
+    image_path: "path/to/image.png"

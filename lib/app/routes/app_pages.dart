@@ -10,10 +10,18 @@ import '../modules/detailQuran/bindings/detail_quran_binding.dart';
 import '../modules/detailQuran/views/detail_quran_view.dart';
 import '../modules/doa/bindings/doa_binding.dart';
 import '../modules/doa/views/doa_view.dart';
+import '../modules/doaSholat/bindings/doa_sholat_binding.dart';
+import '../modules/doaSholat/views/doa_sholat_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/jadwalSholat/bindings/jadwal_sholat_binding.dart';
+import '../modules/jadwalSholat/views/jadwal_sholat_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
+import '../modules/niatSholat/bindings/niat_sholat_binding.dart';
+import '../modules/niatSholat/views/niat_sholat_view.dart';
+import '../modules/search/bindings/search_binding.dart';
+import '../modules/search/views/search_view.dart';
 import '../modules/tahlil/bindings/tahlil_binding.dart';
 import '../modules/tahlil/views/tahlil_view.dart';
 import '../modules/tasbih/bindings/tasbih_binding.dart';
@@ -71,6 +79,26 @@ class AppPages {
       name: _Paths.BACAAN,
       page: () => const BacaanView(),
       binding: BacaanBinding(),
+    ),
+    GetPage(
+      name: _Paths.DOA_SHOLAT,
+      page: () => const DoaSholatView(),
+      binding: DoaSholatBinding(),
+    ),
+    GetPage(
+      name: _Paths.NIAT_SHOLAT,
+      page: () => const NiatSholatView(),
+      binding: NiatSholatBinding(),
+    ),
+    GetPage(
+      name: _Paths.JADWAL_SHOLAT,
+      page: () => const JadwalSholatView(),
+      binding: JadwalSholatBinding(),
+    ),
+    GetPage(
+      name: _Paths.SEARCH,
+      page: () => const SearchView(),
+      binding: SearchBinding(),
     ),
   ];
 }

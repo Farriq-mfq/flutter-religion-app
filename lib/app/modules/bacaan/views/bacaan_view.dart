@@ -29,8 +29,11 @@ class BacaanView extends GetView<BacaanController> {
               ),
               child: ListTile(
                 leading: Icon(Iconsax.book),
-                contentPadding: const EdgeInsets.all(10),
-                title: Text("Bacaan Sholat"),
+                contentPadding: const EdgeInsets.all(12),
+                title: Text("Niat Sholat"),
+                onTap: () {
+                  Get.toNamed("/niat-sholat");
+                },
               ),
             ),
             Card(
@@ -40,8 +43,11 @@ class BacaanView extends GetView<BacaanController> {
               ),
               child: ListTile(
                 leading: Icon(Iconsax.book),
-                contentPadding: const EdgeInsets.all(12),
-                title: Text("Niat Sholat"),
+                contentPadding: const EdgeInsets.all(10),
+                title: Text("Doa Sholat"),
+                onTap: () {
+                  Get.toNamed("/doa-sholat");
+                },
               ),
             ),
           ],

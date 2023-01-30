@@ -40,10 +40,21 @@ class DataProvider extends GetConnect {
     final data = await json.decode(response);
     return data;
   }
+
   Future<List> getNiatSholat() async {
     final String response =
         await rootBundle.loadString("assets/data/niatshalat.json");
     final data = await json.decode(response);
     return data;
+  }
+
+  Future<dynamic> getJadwalSholat(String date) async {
+    var response = await get(
+        "https://api.banghasan.com/sholat/format/json/jadwal/kota/723/tanggal/${date}");
+    if (response.isOk) {
+      return response.body;
+    } else {
+      Future.error(Exception("Terjadi kesalahan"));
+    }
   }
 }

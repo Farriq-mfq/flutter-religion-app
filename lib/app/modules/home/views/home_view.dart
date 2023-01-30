@@ -31,7 +31,7 @@ class HomeView extends GetView<HomeController> {
                     child: Stack(
                       children: [
                         Positioned(
-                          bottom: 70,
+                          bottom: 100,
                           left: 0,
                           right: 0,
                           child: Image.asset(
@@ -129,7 +129,7 @@ class HomeView extends GetView<HomeController> {
                   KategoriWidget(
                     icon_path: "assets/icons/jadwal.svg",
                     title: "Jadwal Sholat",
-                    link: "/tasbih",
+                    link: "/jadwal-sholat",
                   ),
                 ],
               ),
