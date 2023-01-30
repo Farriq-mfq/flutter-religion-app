@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 class Surah {
   Surah({
     this.number,
@@ -32,8 +34,6 @@ class Surah {
         "revelation": revelation!.toJson(),
         "tafsir": tafsir!.toJson(),
       };
-  static List<Surah> listFromJson(list) =>
-      List<Surah>.from(list.map((x) => Surah.fromJson(x)));
 }
 
 class Name {

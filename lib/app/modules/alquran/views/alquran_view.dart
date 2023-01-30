@@ -1,5 +1,5 @@
 import 'package:alquranapp/app/layout/base_layout.dart';
-import 'package:alquranapp/models/surah.dart';
+import 'package:alquranapp/models/Surah.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 
@@ -33,7 +33,24 @@ class AlquranView extends GetView<AlquranController> {
         size: size,
         child: controller.obx(
           onError: (error) => Center(
-            child: Text("Terjadi Kesalahan"),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("Terjadi Kesalahan"),
+                SizedBox(
+                  height: 20,
+                ),
+                InkWell(
+                  onTap: () async {
+                    await controller.findAllSurah();
+                  },
+                  child: Icon(
+                    Iconsax.refresh,
+                    size: 40,
+                  ),
+                )
+              ],
+            ),
           ),
           onLoading: ListView.separated(
               itemBuilder: (context, index) => Container(
@@ -69,25 +86,31 @@ class AlquranView extends GetView<AlquranController> {
                     height: 20,
                   ),
               itemCount: 8),
-          (state) => ListView.separated(
-            physics: const BouncingScrollPhysics(),
-            separatorBuilder: (context, index) {
-              return SizedBox(
-                height: 20,
-              );
+          (state) => RefreshIndicator(
+            color: Color.fromARGB(255, 25, 192, 136),
+            onRefresh: () async {
+              await controller.findAllSurah();
             },
-            itemCount: state!.length,
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              return listQuran(state[index]);
-            },
+            child: ListView.separated(
+              physics: const BouncingScrollPhysics(),
+              separatorBuilder: (context, index) {
+                return SizedBox(
+                  height: 20,
+                );
+              },
+              itemCount: state!.length,
+              shrinkWrap: true,
+              itemBuilder: (context, index) {
+                return listQuran(state[index]);
+              },
+            ),
           ),
         ),
       ),
     );
   }
 
-  Widget listQuran(dynamic data) {
+  Widget listQuran(Surah data) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -103,13 +126,13 @@ class AlquranView extends GetView<AlquranController> {
       ),
       child: ListTile(
         onTap: () {
-          Get.toNamed("/detail-quran/${data['number']}");
+          Get.toNamed("/detail-quran/${data.number}");
         },
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-             data['name']['transliteration']['id'],
+              data.name!.transliteration!.id!,
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
@@ -120,13 +143,13 @@ class AlquranView extends GetView<AlquranController> {
           ],
         ),
         subtitle: Text(
-          data['name']['translation']['id'],
+          data.name!.translation!.id!,
           overflow: TextOverflow.ellipsis,
           maxLines: 1,
           style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w500),
         ),
         trailing: Text(
-         data['revelation']['id'],
+          "${data.revelation?.id.toString().split(".").last}",
           overflow: TextOverflow.ellipsis,
           maxLines: 1,
           style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w500),
@@ -141,7 +164,7 @@ class AlquranView extends GetView<AlquranController> {
             borderRadius: BorderRadius.circular(50),
           ),
           child: Text(
-            "${data['numberOfVerses']}",
+            "${data.numberOfVerses}",
             maxLines: 1,
             style: TextStyle(
                 color: Color.fromARGB(255, 25, 192, 136),

@@ -1,7 +1,9 @@
-import 'package:alquranapp/app/data/tahlil_provider.dart';
+import 'package:alquranapp/app/data/data_provider.dart';
+import 'package:alquranapp/models/TahlilModel.dart';
 import 'package:get/get.dart';
 
-class TahlilController extends GetxController with StateMixin {
+class TahlilController extends GetxController
+    with StateMixin<List<TahlilModel>> {
   //TODO: Implement TahlilController
 
   @override
@@ -21,12 +23,16 @@ class TahlilController extends GetxController with StateMixin {
   }
 
   void findAllTahlil() {
-    TahlilProvider().getAllDoaTahlil().then((value) {
-      print(value.length);
+    DataProvider().getAllDoaTahlil().then((value) {
       Future.delayed(
         Duration(milliseconds: 500),
         () {
-          change(value, status: RxStatus.success());
+          List<TahlilModel> list_doa_tahlil = [];
+          for (var i in value) {
+            list_doa_tahlil.add(TahlilModel.fromJson(i));
+          }
+          print(list_doa_tahlil[0].title);
+          change(list_doa_tahlil, status: RxStatus.success());
         },
       );
     }, onError: (err) {

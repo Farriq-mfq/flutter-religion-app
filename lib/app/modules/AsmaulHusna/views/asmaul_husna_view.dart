@@ -4,17 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:skeletons/skeletons.dart';
 
-import '../controllers/tahlil_controller.dart';
+import '../controllers/asmaul_husna_controller.dart';
 
-class TahlilView extends GetView<TahlilController> {
-  const TahlilView({Key? key}) : super(key: key);
+class AsmaulHusnaView extends GetView<AsmaulHusnaController> {
+  const AsmaulHusnaView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 25, 192, 136),
       appBar: AppBar(
-        title: const Text("Tahlil"),
+        title: const Text("Asmaul Husna"),
         centerTitle: true,
       ),
       body: BaseLayout(
@@ -57,8 +57,7 @@ class TahlilView extends GetView<TahlilController> {
                       text: TextSpan(
                         children: [
                           TextSpan(
-                            // text: state[index]['title'],
-                            text: state[index].title,
+                            text: state[index].latin,
                             style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w500,
@@ -66,8 +65,7 @@ class TahlilView extends GetView<TahlilController> {
                                 color: Colors.grey.shade800),
                           )
                         ],
-                        // text: "${state[index]['id'] }. ",
-                        text: "${state[index].id }. ",
+                        text: "${state[index].urutan}. ",
                         style: TextStyle(
                           color: Color.fromARGB(255, 25, 192, 136),
                           fontWeight: FontWeight.w500,
@@ -82,7 +80,7 @@ class TahlilView extends GetView<TahlilController> {
                   Align(
                     alignment: Alignment.centerRight,
                     child: Text(
-                      state[index].arabic,
+                      state[index].arab,
                       style: TextStyle(
                         letterSpacing: 0.5,
                         fontSize: 28,
@@ -90,13 +88,13 @@ class TahlilView extends GetView<TahlilController> {
                       ),
                     ),
                   ),
-                   SizedBox(
+                  SizedBox(
                     height: 20,
                   ),
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      state[index].translation,
+                      state[index].arti,
                       style: TextStyle(
                         letterSpacing: 0.5,
                         color: Colors.grey.shade800,

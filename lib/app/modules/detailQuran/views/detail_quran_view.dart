@@ -21,11 +21,11 @@ class DetailQuranView extends GetView<DetailQuranController> {
         title: controller.obx(
             onLoading: Column(
               children: [
-                Text("Loading..."),
+                Text("-"),
                 SizedBox(
                   height: 10,
                 ),
-                Text("Loading..."),
+                Text("-"),
               ],
             ),
             onError: (error) => Text("Terjadi Kesalahan"),
@@ -86,67 +86,90 @@ class DetailQuranView extends GetView<DetailQuranController> {
               ],
             ),
           ),
-          onError: (error) => Center(
-            child: Text("Terjadi Kesalahan"),
+          onError: (error) => Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("Terjadi Kesalahan"),
+              SizedBox(
+                height: 20,
+              ),
+              InkWell(
+                onTap: () async {
+                  final param = Get.parameters;
+                  await controller.getDetialSurah(param['surahID'] as String);
+                },
+                child: Icon(
+                  Iconsax.refresh,
+                  size: 40,
+                ),
+              )
+            ],
           ),
-          (state) => ListView.separated(
-            physics: const BouncingScrollPhysics(),
-            itemBuilder: (context, index) => InkWell(
-              onLongPress: () {
-                base_controller.setShowPanel();
-                controller.setAyatIndex(index);
-              },
-              child: Container(
-                color: Colors.grey.shade200,
-                padding: const EdgeInsets.all(10),
-                child: Column(
-                  children: [
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: state!['verses'][index]['text']['arab'],
-                              style: TextStyle(
-                                  fontSize: 28,
-                                  fontWeight: FontWeight.w500,
-                                  letterSpacing: 0.5,
-                                  color: Colors.grey.shade800),
-                            )
-                          ],
-                          text:
-                              "${state!['verses'][index]['number']['inSurah']}  ",
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 25, 192, 136),
-                            fontWeight: FontWeight.w500,
-                            fontSize: 18,
+          (state) => RefreshIndicator(
+            color: Color.fromARGB(255, 25, 192, 136),
+            onRefresh: () async {
+              final param = Get.parameters;
+              await controller.getDetialSurah(param['surahID'] as String);
+            },
+            child: ListView.separated(
+              physics: const BouncingScrollPhysics(),
+              itemBuilder: (context, index) => InkWell(
+                onLongPress: () {
+                  base_controller.setShowPanel();
+                  controller.setAyatIndex(index);
+                },
+                child: Container(
+                  color: Colors.grey.shade200,
+                  padding: const EdgeInsets.all(10),
+                  child: Column(
+                    children: [
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: state!['verses'][index]['text']['arab'],
+                                style: TextStyle(
+                                    fontSize: 28,
+                                    fontWeight: FontWeight.w500,
+                                    letterSpacing: 0.5,
+                                    color: Colors.grey.shade800),
+                              )
+                            ],
+                            text:
+                                "${state!['verses'][index]['number']['inSurah']}  ",
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 25, 192, 136),
+                              fontWeight: FontWeight.w500,
+                              fontSize: 18,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        state!['verses'][index]['translation']['id'],
-                        style: TextStyle(
-                          letterSpacing: 0.5,
-                          color: Colors.grey.shade800,
-                        ),
+                      SizedBox(
+                        height: 20,
                       ),
-                    )
-                  ],
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          state!['verses'][index]['translation']['id'],
+                          style: TextStyle(
+                            letterSpacing: 0.5,
+                            color: Colors.grey.shade800,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
+              separatorBuilder: (context, index) => Divider(
+                height: 40,
+                color: Colors.grey.shade700,
+              ),
+              itemCount: state!['verses'].length,
             ),
-            separatorBuilder: (context, index) => Divider(
-              height: 40,
-              color: Colors.grey.shade700,
-            ),
-            itemCount: state!['verses'].length,
           ),
         ),
       ),

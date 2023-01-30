@@ -16,7 +16,6 @@ dependencies:
   sliding_up_panel: ^2.0.0+1
   syncfusion_flutter_gauges: 
   intl: 
-  flutter_countdown_timer: 
   flutter:
     sdk: flutter
 

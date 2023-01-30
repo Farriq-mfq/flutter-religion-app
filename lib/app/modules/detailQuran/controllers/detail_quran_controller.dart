@@ -1,9 +1,9 @@
 import 'package:alquranapp/app/controllers/base_controller_controller.dart';
 import 'package:alquranapp/app/data/alquran_api_provider.dart';
+import 'package:alquranapp/models/Surah.dart';
 import 'package:get/get.dart';
 
-class DetailQuranController extends GetxController
-    with StateMixin<Map<String, dynamic>> {
+class DetailQuranController extends GetxController with StateMixin<dynamic> {
   //TODO: Implement DetailQuranController
 
   final ayat_index = 0.obs;
@@ -26,13 +26,13 @@ class DetailQuranController extends GetxController
     Get.delete<BaseControllerController>();
   }
 
-  void setAyatIndex(index){
+  void setAyatIndex(index) {
     ayat_index.value = index;
   }
 
   Future<void> getDetialSurah(String id) async {
+    change(null, status: RxStatus.loading());
     AlquranApiProvider().getDetailSurah(id).then((result) {
-      print(result);
       change(result, status: RxStatus.success());
     }, onError: (err) {
       change(null, status: RxStatus.error());

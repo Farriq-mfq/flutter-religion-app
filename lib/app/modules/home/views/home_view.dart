@@ -1,10 +1,10 @@
 import 'package:alquranapp/app/widget/KategoriWidget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:skeletons/skeletons.dart';
 
 import '../controllers/home_controller.dart';
 import 'dart:ui' as ui;
@@ -17,10 +17,6 @@ class HomeView extends GetView<HomeController> {
     final Size size = MediaQuery.of(context).size;
     // int endTime = DateTime.now().millisecondsSinceEpoch + ;
     return Scaffold(
-      floatingActionButton: ElevatedButton(
-        child: Text("test"),
-        onPressed: () => controller.findJadwalSholat(),
-      ),
       body: SafeArea(
           child: SingleChildScrollView(
         child: Column(
@@ -35,7 +31,7 @@ class HomeView extends GetView<HomeController> {
                     child: Stack(
                       children: [
                         Positioned(
-                          bottom: 40,
+                          bottom: 70,
                           left: 0,
                           right: 0,
                           child: Image.asset(
@@ -45,144 +41,28 @@ class HomeView extends GetView<HomeController> {
                           ),
                         ),
                         Positioned(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Column(
-                                children: [
-                                  Text(
-                                    "ISHA",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 28,
-                                        fontWeight: FontWeight.bold,
-                                        letterSpacing: 1),
-                                  ),
-                                  SizedBox(
-                                    height: 8,
-                                  ),
-                                  Text(
-                                    "Current Prayer",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 14,
-                                        letterSpacing: 1),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 30,
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Card(
-                                    color: Colors.transparent,
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(20)),
-                                    elevation: 1,
-                                    child: Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 15, horizontal: 35),
-                                      decoration: BoxDecoration(
-                                        color: Colors.white.withOpacity(0.1),
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                      child: Column(
-                                        children: [
-                                          Text(
-                                            "Start",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.w500,
-                                                letterSpacing: 1),
-                                          ),
-                                          SizedBox(
-                                            height: 8,
-                                          ),
-                                          // CountdownTimer(
-                                          //   endTime: endTime,
-                                            
-                                          // ),
-                                          Text(
-                                            "07:50",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold,
-                                                letterSpacing: 1),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  Card(
-                                    color: Colors.transparent,
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(20)),
-                                    elevation: 1,
-                                    child: Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 15, horizontal: 35),
-                                      decoration: BoxDecoration(
-                                        color: Colors.white.withOpacity(0.1),
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                      child: Column(
-                                        children: [
-                                          Text(
-                                            "End",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.w500,
-                                                letterSpacing: 1),
-                                          ),
-                                          SizedBox(
-                                            height: 8,
-                                          ),
-                                          Text(
-                                            "07:50",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold,
-                                                letterSpacing: 1),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          top: 0,
-                          bottom: 60,
-                          left: 0,
-                          right: 0,
-                        ),
-                        Positioned(
                           child: controller.obx(
-                            (state) => Row(
+                            onLoading: Text("-"),
+                            onError: (error) => Text("-"),
+                            (state) => Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text(
-                                  "ds Muharam 1444",
+                                  "${state['tanggal_hijriyah']} ${state['bulan_hijriyah']} ${state['tahun_hijriyah']} ",
+                                  textAlign: TextAlign.center,
                                   style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                )
+                                      color: Colors.white,
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.w500,
+                                      letterSpacing: 0.5),
+                                ),
                               ],
                             ),
                           ),
-                          left: 10,
-                          right: 10,
-                          top: 10,
+                          left: 0,
+                          right: 0,
+                          top: 30,
+                          bottom: 0,
                         ),
                       ],
                     ),
@@ -194,10 +74,10 @@ class HomeView extends GetView<HomeController> {
             // menu di sini
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 20),
-              transform: Matrix4.translationValues(0.0, -90.0, 0.0),
+              transform: Matrix4.translationValues(0.0, -120.0, 0.0),
               width: double.infinity,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(35),
+                borderRadius: BorderRadius.circular(30),
                 color: Colors.white,
                 boxShadow: [
                   BoxShadow(
@@ -223,8 +103,8 @@ class HomeView extends GetView<HomeController> {
                   ),
                   KategoriWidget(
                     icon_path: "assets/icons/pray.svg",
-                    title: "Doa & Wirid",
-                    link: "/tasbih",
+                    title: "Do'a - Do'a",
+                    link: "/doa",
                   ),
                   KategoriWidget(
                     icon_path: "assets/icons/tasbih.svg",
@@ -238,18 +118,26 @@ class HomeView extends GetView<HomeController> {
                   ),
                   KategoriWidget(
                     icon_path: "assets/icons/tata_cara.svg",
-                    title: "Bacaan Sholat",
-                    link: "/tasbih",
+                    title: "Kumpulan Bacaan",
+                    link: "/bacaan",
                   ),
                   KategoriWidget(
                     icon_path: "assets/icons/asmaul_husna.svg",
                     title: "Asmaul Husna",
+                    link: "/asmaul-husna",
+                  ),
+                  KategoriWidget(
+                    icon_path: "assets/icons/jadwal.svg",
+                    title: "Jadwal Sholat",
                     link: "/tasbih",
                   ),
                 ],
               ),
             ),
-            Text("Versi Aplikasi 1.0.0")
+            Container(
+              transform: Matrix4.translationValues(0.0, -60.0, 0.0),
+              child: Text("Versi Aplikasi 1.0.0"),
+            ),
           ],
         ),
       )),

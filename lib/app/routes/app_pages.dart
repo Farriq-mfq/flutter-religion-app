@@ -1,9 +1,15 @@
 import 'package:get/get.dart';
 
+import '../modules/AsmaulHusna/bindings/asmaul_husna_binding.dart';
+import '../modules/AsmaulHusna/views/asmaul_husna_view.dart';
 import '../modules/alquran/bindings/alquran_binding.dart';
 import '../modules/alquran/views/alquran_view.dart';
+import '../modules/bacaan/bindings/bacaan_binding.dart';
+import '../modules/bacaan/views/bacaan_view.dart';
 import '../modules/detailQuran/bindings/detail_quran_binding.dart';
 import '../modules/detailQuran/views/detail_quran_view.dart';
+import '../modules/doa/bindings/doa_binding.dart';
+import '../modules/doa/views/doa_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
@@ -50,6 +56,21 @@ class AppPages {
       name: _Paths.TAHLIL,
       page: () => const TahlilView(),
       binding: TahlilBinding(),
+    ),
+    GetPage(
+      name: _Paths.ASMAUL_HUSNA,
+      page: () => const AsmaulHusnaView(),
+      binding: AsmaulHusnaBinding(),
+    ),
+    GetPage(
+      name: _Paths.DOA,
+      page: () => const DoaView(),
+      binding: DoaBinding(),
+    ),
+    GetPage(
+      name: _Paths.BACAAN,
+      page: () => const BacaanView(),
+      binding: BacaanBinding(),
     ),
   ];
 }
