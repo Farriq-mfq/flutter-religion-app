@@ -2,9 +2,9 @@
     package="com.example.alquranapp">
       <uses-permission android:name="android.permission.INTERNET"/> 
    <application
-        android:label="alquranapp"
-        android:name="${applicationName}"
-        android:icon="@mipmap/launcher_icon">
+        android:label="AL-ARIFIYAH Online"
+        android:name="io.flutter.app.FlutterApplicatio"
+        android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
             android:exported="true"
